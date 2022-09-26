@@ -1,0 +1,53 @@
+package com.jdc.test;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
+
+import com.jdc.location.config.AppConfig;
+import com.jdc.location.dao.StatesDao;
+import com.jdc.location.dto.States;
+import com.jdc.utils.DbUtil;
+
+@SpringJUnitConfig(classes = AppConfig.class)
+public class StatesDaoTest {
+
+	@Autowired
+	private StatesDao dao;
+	
+	@BeforeAll
+	static void init()
+	{
+		DbUtil.truncate("states");
+	}
+	@ParameterizedTest
+	@CsvSource(value= {
+			"Yangon,1",
+			"Mandalay,2",
+			"Myitkyina,3"
+	})
+	void insertTest(String name,int expectedId)
+	{
+		var state = new States();
+		state.setName(name);
+		
+		var result = dao.insert(state);
+		
+		Assertions.assertEquals(expectedId,result);
+	}
+	
+	void findAllTest()
+	{
+		
+		
+	}
+	
+	void findByIdTest()
+	{
+		
+		
+	}
+}
