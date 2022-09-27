@@ -24,8 +24,9 @@ public class AppConfig {
 	{
 		var ds = new MysqlDataSource();
 		ds.setUrl(url);
-		ds.setPassword(password);
 		ds.setUser(user);
+		ds.setPassword(password);
+		
 		return ds;
 	}
 }

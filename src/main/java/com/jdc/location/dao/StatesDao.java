@@ -40,7 +40,6 @@ public class StatesDao {
 				return result.getInt(1);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return 0;
@@ -58,7 +57,7 @@ public class StatesDao {
 			while(result.next()) {
 				var data = new States();
 				data.setId(result.getInt("id"));
-				data.setName(null);
+				data.setName(result.getString("name"));
 				list.add(data);
 			}
 		} catch (SQLException e) {
@@ -78,7 +77,7 @@ public class StatesDao {
 			while(result.next()) {
 				var data = new States();
 				data.setId(result.getInt("id"));
-				data.setName(null);
+				data.setName(result.getString("name"));
 				return data;				
 			}
 		} catch (SQLException e) {
